@@ -1,0 +1,68 @@
+.imglens{
+    height: 1.7rem;
+    object-fit: contain;
+}
+.carousel-item{
+    max-height: 700px;
+}
+.c-item{
+    height: 450px;
+}
+.c-img{
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+}
+section{
+    display: flex;
+    flex-wrap: wrap!important;
+}
+.imglogo{
+    width: 10rem;
+}
+.card-body{
+    min-height: 11rem;
+}
+.search{
+    height: 1.7rem;
+}
+.img-fluid{
+    height: 15rem!important;
+    width: 20rem!important;
+    object-fit: cover!important;
+}
+table, th, tr, td{
+    border: 1px solid black!important;
+    border-collapse: collapse;
+}
+.categories{
+    background-color: #896a6798;
+}
+section{
+    background-color: #DDC8C4;
+}
+main{
+    background-color: #DDC8C4;
+}
+footer{
+    background-color: #13070C;
+}
+.card-body{
+    background-color: #896A67;
+}
+.fondodiv{
+    background-color: #896A67!important;
+}
+body{
+    background-color: #896A67;
+}
+#exampleFormControlTextarea1{
+    resize: none;
+}
+.btn{
+    background-color: rgb(38, 16, 49)!important;
+    border-color: black!important;
+}
+*{
+    font-family: 'Lora', serif;
+}
