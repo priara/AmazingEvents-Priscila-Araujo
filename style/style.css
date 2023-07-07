@@ -20,17 +20,11 @@ section{
 .imglogo{
     width: 10rem;
 }
-.card-body{
-    min-height: 11rem;
-}
+
 .search{
     height: 1.7rem;
 }
-.img-fluid{
-    height: 15rem!important;
-    width: 20rem!important;
-    object-fit: cover!important;
-}
+
 table, th, tr, td{
     border: 1px solid black!important;
     border-collapse: collapse;
@@ -47,9 +41,6 @@ main{
 footer{
     background-color: #13070C;
 }
-.card-body{
-    background-color: #896A67;
-}
 .fondodiv{
     background-color: #896A67!important;
 }
@@ -65,4 +56,15 @@ body{
 }
 *{
     font-family: 'Lora', serif;
+}
+
+.container2{
+    min-height: 20rem!important;
+}
+.card{
+    height: 30rem!important;
+}
+.card-body{
+    background-color: #896A67;
+    min-height: 10rem!important;
 }
