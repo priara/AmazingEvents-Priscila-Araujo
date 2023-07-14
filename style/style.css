@@ -74,3 +74,6 @@ body{
 #main-details{
     min-height: 83.8vh;
 }
+.card-body-details{
+    background-color: #896A67;
+}
