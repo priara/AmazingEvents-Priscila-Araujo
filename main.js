@@ -1,6 +1,8 @@
 
 let contenedorTarjetas = document.getElementById("sectionTarjetas")
-
+let contenedorParaCheckbox = document.getElementById("contenedorParaCheckbox")
+// console.log(contenedorParaCheckbox);
+let arrayEvents = data.events;
 function crearTarjeta(objeto) {
     return `<div class="container mt-3 col-md-4 col-xl-3">
             <div class="container2 col-12 col-md-12 d-flex justify-content-center align-items-center">
@@ -11,7 +13,7 @@ function crearTarjeta(objeto) {
             <p class="card-text">${objeto.description}</p>
             <div class="d-flex justify-content-evenly">
             <p>Price: ${objeto.price}</p>
-            <a href="./pages/details.html" class="btn btn-primary ">Details</a>
+            <a href="./pages/details.html?parametro=${objeto._id}" id="botondetails" class="btn btn-primary ">Details</a>
             </div>
             </div>
             </div>
@@ -20,8 +22,107 @@ function crearTarjeta(objeto) {
 }
 
 function mostrarTarjetas(eventos) {
-    for (let evento of eventos){
-        contenedorTarjetas.innerHTML += crearTarjeta(evento);
+        let aux1 = ""
+        for (let evento of eventos) {
+            aux1 += crearTarjeta(evento);
+        }
+        return contenedorTarjetas.innerHTML+=aux1
+}
+
+mostrarTarjetas(data.events)
+
+//sprint 3
+let inputBusqueda = document.getElementById("inputTypeSearch")
+inputBusqueda.addEventListener("input", ()=>{
+    // inputvalue guarda lo que ingresa el usuario
+    let inputValue = mostrarValor(inputBusqueda)
+    let check = document.querySelectorAll("input[type='checkbox']:checked")
+    let categoriasCheckeadas = Array.from(check).map(check => check.value);
+    let resultadoArray = filtrarCruzado(arrayEvents, categoriasCheckeadas, inputValue)
+    limpieza()
+    if(resultadoArray.length == 0 && inputValue.lenght > 0){
+        return contenedorTarjetas.innerHTML="NO HAY COINCIDENCIAS"
+    }else if(resultadoArray.lenght == 0){
+        return mostrarTarjetas(arrayEvents)
+    }else{
+        return mostrarTarjetas(resultadoArray)
+    }
+}) 
+
+
+function mostrarValor(input){
+    let valorInput = input.value
+    // console.log(valorInput);
+    return valorInput
+}
+
+
+function filtradoSearch (array, inputValue){
+    let resultado = array.filter(evento => evento.name.toLowerCase().includes(inputValue.toLowerCase()))
+    return resultado
+}
+
+function limpieza(){
+    return contenedorTarjetas.innerHTML = ""
+}
+
+let categoryArray = data.events.map(evento => evento.category)
+new Set(categoryArray)
+// console.log(new Set(categoryArray));
+
+let setDeCategorias = new Set(categoryArray);
+let arrayCategorias = Array.from(setDeCategorias)
+
+
+
+function crearCheckbox(category) {
+    return `<label for="${category}">${category}</label>
+    <input type="checkbox" id="${category}" name="category" value="${category}" class="categorias d-flex align-items-center">`
+}
+
+function mostrarCheckbox(array, donde){
+    for(let categoria of array){
+        donde.innerHTML += crearCheckbox(categoria)
     }
 }
-mostrarTarjetas(data.events)
+mostrarCheckbox(arrayCategorias, contenedorParaCheckbox)
+
+
+contenedorParaCheckbox.addEventListener("change", (e) => {
+    let check = document.querySelectorAll("input[type='checkbox']:checked")
+    let categoriasCheckeadas = Array.from(check).map(check => check.value);
+    console.log(categoriasCheckeadas);
+    // let events = data.events;
+    let inputValue = mostrarValor(inputBusqueda)
+    console.log(inputValue);
+    console.log(inputBusqueda);
+    let resultadoArray = filtrarCruzado(arrayEvents, categoriasCheckeadas, inputValue)
+    console.log(resultadoArray);
+    limpieza()
+    if(categoriasCheckeadas.length == 0 && inputValue.lenght > 0 && resultadoArray.lenght == 0 || categoriasCheckeadas.length == 0 && inputValue.lenght > 0){
+        return contenedorTarjetas.innerHTML="NO HAY COINCIDENCIAS"
+    }else if(resultadoArray.lenght == 0 && categoriasCheckeadas.length > 0){
+        return contenedorTarjetas.innerHTML="NO HAY COINCIDENCIAS"
+    }else if(resultadoArray.lenght == 0 ){
+        return mostrarTarjetas(arrayEvents)
+    }else{
+        return mostrarTarjetas(resultadoArray)
+    }
+}) 
+
+function filtrarPorCategoria(arrayEventos, categoriasCheckeadas){
+    if(categoriasCheckeadas.length == 0){
+        return arrayEventos
+    }else{
+    let aux = arrayEventos.filter(evento => categoriasCheckeadas.includes(evento.category))
+    return aux
+    }
+}
+
+function filtrarCruzado(arrayEventos, categoriasCheckeadas, inputValue){
+    let filtroSearch = filtradoSearch(arrayEventos, inputValue)
+    let filtroCategoria = filtrarPorCategoria(filtroSearch, categoriasCheckeadas)
+    return filtroCategoria
+}
+
+

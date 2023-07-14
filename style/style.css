@@ -34,6 +34,7 @@ table, th, tr, td{
 }
 section{
     background-color: #DDC8C4;
+    min-height: 60vh;
 }
 main{
     background-color: #DDC8C4;
@@ -51,20 +52,25 @@ body{
     resize: none;
 }
 .btn{
-    background-color: rgb(38, 16, 49)!important;
     border-color: black!important;
+}
+#botondetails{
+    background-color: #574240;
 }
 *{
     font-family: 'Lora', serif;
 }
 
-.container2{
-    min-height: 20rem!important;
-}
 .card{
-    height: 30rem!important;
+    height: 25rem!important;
+    width: 18rem!important;
+}
+.card-img-top{
+    height: 10rem!important;
 }
 .card-body{
     background-color: #896A67;
-    min-height: 10rem!important;
+}
+#main-details{
+    min-height: 83.8vh;
 }
