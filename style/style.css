@@ -16,6 +16,7 @@
 section{
     display: flex;
     flex-wrap: wrap!important;
+    min-height: 65vh;
 }
 .imglogo{
     width: 10rem;
@@ -28,16 +29,21 @@ section{
 table, th, tr, td{
     border: 1px solid black!important;
     border-collapse: collapse;
+    background-color: white;
+    margin-bottom: 0!important;
+}
+tr,td{
+    text-align: center;
 }
 .categories{
     background-color: #896a6798;
 }
 section{
     background-color: #DDC8C4;
-    min-height: 60vh;
 }
 main{
     background-color: #DDC8C4;
+    min-height: 83.8vh;
 }
 footer{
     background-color: #13070C;
@@ -62,8 +68,8 @@ body{
 }
 
 .card{
-    height: 25rem!important;
-    width: 18rem!important;
+    height: 26rem!important;
+    width: 20rem!important;
 }
 .card-img-top{
     height: 10rem!important;
@@ -71,9 +77,12 @@ body{
 .card-body{
     background-color: #896A67;
 }
+.card-body-details{
+    background-color: #896A67;
+}
 #main-details{
     min-height: 83.8vh;
 }
-.card-body-details{
+.detailscard{
     background-color: #896A67;
 }
