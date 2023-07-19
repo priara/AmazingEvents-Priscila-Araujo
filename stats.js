@@ -117,9 +117,9 @@ function tabla2(evento, htmlContenedor, capacidad){
 
 function crearTabla(aux) {
         return `<tr>
-            <td colspan="1" class="p-3">${aux.nombre}</td>
-            <td colspan="1" class="p-3">${aux.ganancias}</td>
-            <td colspan="1" class="p-3">${aux.porcentajeDeAsistencia} %</td>
+            <td colspan="1" class="tabla2y3 p-3">${aux.nombre}</td>
+            <td colspan="1" class=" tabla2y3p-3">${aux.ganancias}</td>
+            <td colspan="1" class=" tabla2y3 p-3">${aux.porcentajeDeAsistencia} %</td>
             </tr>`
         }
 

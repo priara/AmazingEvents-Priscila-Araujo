@@ -1,5 +1,5 @@
 
-import { crearTarjeta, mostrarTarjetas, filtrarPorCategoria, filtrarCruzado, mostrarValor, filtradoSearch,  limpieza , crearCheckbox, mostrarCheckbox } from './funciones.js'
+import { crearTarjeta, mostrarTarjetas, filtrarCruzado, mostrarValor,  limpieza , mostrarCheckbox } from './funciones.js'
 let contenedorTarjetas = document.getElementById("sectionTarjetas")
 let contenedorParaCheckbox = document.getElementById("contenedorParaCheckbox")
 console.log(contenedorParaCheckbox);
@@ -15,7 +15,7 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
         // mostrarTarjetas(eventos)
         eventosFuturos = filtrarEventos(eventos, data.currentDate)
         console.log(eventosFuturos);
-        mostrarTarjetas(eventosFuturos, contenedorTarjetas)
+        mostrarTarjetas(eventosFuturos, contenedorTarjetas, crearTarjeta)
         let categoryArray = data.events.map(evento => evento.category)
         new Set(categoryArray)
         let setDeCategorias = new Set(categoryArray);
@@ -33,13 +33,13 @@ inputBusqueda.addEventListener("input", ()=>{
     let check = document.querySelectorAll("input[type='checkbox']:checked")
     let categoriasCheckeadas = Array.from(check).map(check => check.value);
     let resultadoArray = filtrarCruzado(eventosFuturos, categoriasCheckeadas, inputValue)
-    limpieza()
+    limpieza(contenedorTarjetas)
     if(resultadoArray.length == 0 ){
         return contenedorTarjetas.innerHTML="NO MATCHES"
     }else if(resultadoArray.lenght == 0){
-        return mostrarTarjetas(eventosFuturos)
+        return mostrarTarjetas(eventosFuturos, contenedorTarjetas, crearTarjeta)
     }else{
-        return mostrarTarjetas(resultadoArray)
+        return mostrarTarjetas(resultadoArray, contenedorTarjetas, crearTarjeta)
     }
 })  
 
@@ -48,15 +48,15 @@ contenedorParaCheckbox.addEventListener("change", (e) => {
     let categoriasCheckeadas = Array.from(check).map(check => check.value);
     let inputValue = mostrarValor(inputBusqueda)
     let resultadoArray = filtrarCruzado(eventosFuturos, categoriasCheckeadas, inputValue)
-    limpieza()
+    limpieza(contenedorTarjetas)
     if(categoriasCheckeadas.length == 0 && inputValue.lenght > 0 ){
         return contenedorTarjetas.innerHTML="NO MATCHES"
     }else if(resultadoArray.lenght == 0 ){
         return contenedorTarjetas.innerHTML="NO MATCHES"
     }else if(resultadoArray.lenght == 0 ){
-        return mostrarTarjetas(eventosFuturos)
+        return mostrarTarjetas(eventosFuturos, contenedorTarjetas, crearTarjeta)
     }else{
-        return mostrarTarjetas(resultadoArray)
+        return mostrarTarjetas(resultadoArray, contenedorTarjetas, crearTarjeta)
     }
 }) 
 

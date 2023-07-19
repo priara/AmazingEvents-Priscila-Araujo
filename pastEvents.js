@@ -1,4 +1,4 @@
-import { crearTarjeta, mostrarTarjetas, filtrarPorCategoria, filtrarCruzado, mostrarValor, filtradoSearch,  limpieza , crearCheckbox, mostrarCheckbox } from './funciones.js'
+import { crearTarjeta, mostrarTarjetas, filtrarCruzado, mostrarValor,  limpieza , mostrarCheckbox } from './funciones.js'
 let contenedorTarjetas = document.getElementById("sectionTarjetas");
 let contenedorParaCheckbox = document.getElementById("contenedorParaCheckbox");
 console.log(contenedorParaCheckbox);
@@ -13,7 +13,7 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
       console.log(eventos);
       eventosPasados = filtrarEventos(eventos, data.currentDate)
       console.log(eventosPasados)
-      mostrarTarjetas(eventosPasados, contenedorTarjetas)
+      mostrarTarjetas(eventosPasados, contenedorTarjetas, crearTarjeta)
       let categoryArray = data.events.map(evento => evento.category)
       new Set(categoryArray)
       let setDeCategorias = new Set(categoryArray)
@@ -31,13 +31,13 @@ inputBusqueda.addEventListener("input", () => {
   let check = document.querySelectorAll("input[type='checkbox']:checked")
   let categoriasCheckeadas = Array.from(check).map(check => check.value)
   let resultadoArray = filtrarCruzado(eventosPasados,categoriasCheckeadas,inputValue);
-  limpieza()
+  limpieza(contenedorTarjetas)
   if (resultadoArray.length == 0) {
     return contenedorTarjetas.innerHTML = "NO MATCHES"
   } else if (resultadoArray.lenght == 0) {
-    return mostrarTarjetas(eventosPasados);
+    return mostrarTarjetas(eventosPasados, contenedorTarjetas, crearTarjeta);
   } else {
-    return mostrarTarjetas(resultadoArray);
+    return mostrarTarjetas(resultadoArray, contenedorTarjetas, crearTarjeta);
   }
 });
 
@@ -46,7 +46,7 @@ contenedorParaCheckbox.addEventListener("change", (e) => {
   let categoriasCheckeadas = Array.from(check).map(check => check.value)
   let inputValue = mostrarValor(inputBusqueda)
   let resultadoArray = filtrarCruzado(eventosPasados,categoriasCheckeadas,inputValue);
-  limpieza();
+  limpieza(contenedorTarjetas)
   if (
     (categoriasCheckeadas.length == 0 &&
       inputValue.lenght > 0 &&
@@ -57,9 +57,9 @@ contenedorParaCheckbox.addEventListener("change", (e) => {
   } else if (resultadoArray.lenght == 0 && categoriasCheckeadas.length > 0) {
     return contenedorTarjetas.innerHTML = "NO MATCHES"
   } else if (resultadoArray.lenght == 0) {
-    return mostrarTarjetas(eventosPasados)
+    return mostrarTarjetas(eventosPasados, contenedorTarjetas, crearTarjeta)
   } else {
-    return mostrarTarjetas(resultadoArray)
+    return mostrarTarjetas(resultadoArray, contenedorTarjetas, crearTarjeta)
   }
 })
 

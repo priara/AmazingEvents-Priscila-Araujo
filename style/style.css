@@ -28,12 +28,31 @@ section{
 
 table, th, tr, td{
     border: 1px solid black!important;
-    border-collapse: collapse;
-    background-color: white;
+    border-collapse: collapse;  
     margin-bottom: 0!important;
+}
+
+#tablamayor{
+    background-color: #FFD1BA!important;
+}
+#tablamenor{
+    background-color: #FFD1BA!important;
+}
+#tablalargo{
+    background-color: #FFD1BA!important;
+}
+.tablas{
+    background-color: #CE7DA5!important;
+}
+.tabla2y3{
+    background-color: #FFD1BA!important;
+}
+th{
+    background-color: #493657!important;
 }
 tr,td{
     text-align: center;
+    background-color: #FFD1BA!important;
 }
 .categories{
     background-color: #896a6798;

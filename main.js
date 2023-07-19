@@ -1,5 +1,5 @@
 
-import {crearTarjeta, mostrarTarjetas, filtrarPorCategoria, filtrarCruzado, mostrarValor, filtradoSearch,  limpieza , crearCheckbox, mostrarCheckbox } from './funciones.js'
+import {crearTarjeta, mostrarTarjetas, filtrarCruzado, mostrarValor,  limpieza , mostrarCheckbox } from './funciones.js'
 let contenedorTarjetas = document.getElementById("sectionTarjetas")
 let contenedorParaCheckbox = document.getElementById("contenedorParaCheckbox")
 
